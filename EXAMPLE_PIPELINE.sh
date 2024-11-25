@@ -4,7 +4,7 @@
 TM=`pwd`'/tools/tm'
 
 #step 1: set up your python environment (replace with whatever path is relevant for you)
-ENVIRONMENT='/path/to/<your_environment>/bin/activate'
+ENVIRONMENT='.venv/bin/activate'
 source $ENVIRONMENT
 
 #step 2: if your corpus is not already in the right format, convert it
