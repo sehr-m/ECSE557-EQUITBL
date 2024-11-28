@@ -7,6 +7,7 @@
 # compatible with the rest of EQUITBL and saving them in the corpora folder.
 # Should be quite adaptable to other corpora.
 
+from argparse import ArgumentParser
 import pandas as pd
 
 
@@ -15,10 +16,31 @@ from tools.corpus.corpus_mapping import map_to_schema
 
 
 def main():
+    a = ArgumentParser()
+    a.add_argument(
+        "-data_file",
+        dest="data_file",
+        required=True,
+        type=str,
+        help="path to data file",
+    )
+    a.add_argument(
+        "-descriptor",
+        dest="descriptor",
+        required=True,
+        type=str,
+        help="descriptor for output files",
+    )
+
     out_file_path = "test_files/input/corpora/"
 
     # load csv file
-    df = pd.read_csv("ECSE Final Project Data - GPT-4.csv")
+    # df = pd.read_csv("ECSE Final Project Data - Gemini.csv")
+    # print arguments
+    print(a.parse_args().data_file)
+    # df = pd.read_csv("ECSE Final Project Data - Co-Pilot.csv")
+    df = pd.read_csv(a.parse_args().data_file)
+    descriptor = a.parse_args().descriptor
 
     # take each run and put it in a new row
     data = []
@@ -28,9 +50,9 @@ def main():
     print(df.head())
     for index, row in df.iterrows():
         id = index * 3
-        data.append({"file_id": id, "sentences": row["run 1"]})
-        data.append({"file_id": id + 1, "sentences": row["run 2"]})
-        data.append({"file_id": id + 1, "sentences": row["run 3"]})
+        data.append({"file_id": id, "sentences": row["run 1"].replace('"', " ")})
+        data.append({"file_id": id + 1, "sentences": row["run 2"].replace('"', " ")})
+        data.append({"file_id": id + 1, "sentences": row["run 3"].replace('"', " ")})
 
     # # the brown corpus is organized by categories
     # cats = brown.categories()
@@ -61,7 +83,7 @@ def main():
     # print(os.getcwd())
 
     # save it somewhere
-    full_save = out_file_path + "job_categories.json"
+    full_save = out_file_path + descriptor + "_categories.json"
     full_df.to_json(full_save)
 
     # so now we have a dataframe with the columns 'file_id' 'category' and 'sentences'
@@ -77,7 +99,7 @@ def main():
     )
 
     # save!
-    save_as = out_file_path + "job_corpus.json"
+    save_as = out_file_path + descriptor + "_corpus.json"
     new_df.to_json(save_as)
 
 

@@ -1,11 +1,7 @@
 shePRP
+herPRP$
+herPRP
+herNNP
 womanNN
-girlNN
-ladyNN
 femaleNN
 femaleJJ
-feminineJJ
-msNNP
-mrsNNP
-missNNP
-madamNNP

@@ -1,10 +1,6 @@
 hePRP
-himselfPRP
+hisPRP$
+hePRP$
+himPRP
 manNN
-boyNN
-guyNN
-maleNN
-maleJJ
-masculineJJ
 mrNNP
-sirNNP
