@@ -35,10 +35,7 @@ def main():
     out_file_path = "test_files/input/corpora/"
 
     # load csv file
-    # df = pd.read_csv("ECSE Final Project Data - Gemini.csv")
-    # print arguments
     print(a.parse_args().data_file)
-    # df = pd.read_csv("ECSE Final Project Data - Co-Pilot.csv")
     df = pd.read_csv(a.parse_args().data_file)
     descriptor = a.parse_args().descriptor
 
@@ -54,34 +51,7 @@ def main():
         data.append({"file_id": id + 1, "sentences": row["run 2"].replace('"', " ")})
         data.append({"file_id": id + 1, "sentences": row["run 3"].replace('"', " ")})
 
-    # # the brown corpus is organized by categories
-    # cats = brown.categories()
-
-    # # put corpus into a dataframe
-    # # for illustrative purposes, we will initially include some information
-    # # which we will later get rid of when mapping to the EQUITBL schema
-    # # but because concat'ing dataframes is terrible, we'll actually build it as a list of dictionaries
-    # data = []
-
-    # # go through category by category:
-    # for cat in cats:
-    #     f_ids = brown.fileids(cat)
-    #     # go through the category file by file
-    #     for f_id in f_ids:
-    #         # get the text as a list of lists of tokens
-    #         sent_lists = brown.sents(f_id)
-    #         # we just want the text so convert to a string
-    #         sentences = " ".join(
-    #             [token for sentence in sent_lists for token in sentence]
-    #         )
-    #         data.append({"file_id": f_id, "category": cat, "sentences": sentences})
-    # once you've gone through all of it, convert data into the dataframe:
     full_df = pd.DataFrame(data)
-
-    # print current path
-    # print(out_file_path)
-    # print(os.getcwd())
-
     # save it somewhere
     full_save = out_file_path + descriptor + "_categories.json"
     full_df.to_json(full_save)
@@ -91,7 +61,7 @@ def main():
     # but e.g. if you only wanted to convert a subset of the corpus it would be useful!)
     # we have to tell map_to_schema what IDs and TEXTs are currently called:
     id_name = "file_id"
-    text_name = "sentences"  # if you have multiple TEXT columns, list all of them to combine as a single 'article'
+    text_name = "sentences"
 
     # map to the EQUITBL schema
     new_df = map_to_schema(

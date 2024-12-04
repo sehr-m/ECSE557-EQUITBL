@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# author: Sehr Moosabhoy (based on code by Hannah Devinney)
+# run this script to train a topic model on a corpus and visualize the topics
+# takes in descriptor and data file from config file
+
 #shortcut to tm folder
 TM=`pwd`'/tools/tm'
 
@@ -7,7 +11,7 @@ TM=`pwd`'/tools/tm'
 ENVIRONMENT='.venv/bin/activate'
 source $ENVIRONMENT
 
-#step 2.5: sort out your CONFIG and LOG files
+#step 1.5: sort out your CONFIG and LOG files
 CONFIG='config_files/copilot_config.ini' #make sure to go into this and set appropriate absolute paths!
 LOG='logs/log_EXAMPLE.txt'
 
