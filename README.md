@@ -16,6 +16,18 @@ The a more thorough user guide is available here (`EQUITBL_instructions.pdf`), w
 * maptlotlib (only for visualizing results)
 * nltk (if you would like to run the example code)
 
+Due to the lack of maintenance for pSSLDA, I provide the relevant versions of these packages below
+* contourpy           1.1.0
+* Cython              0.29.26
+* gensim              4.3.3
+* matplotlib          3.8.0
+* nltk                3.9.1
+* numpy               1.21.5
+* pandas              2.0.3
+* pSSLDA              0.1.0
+* scipy               1.10.0
+* setuptools          58.0.4
+
 ## Running the example code
 
 You will have to make a few minor changes to sucessfully run the example code:
@@ -37,8 +49,11 @@ Some things in the code remain non-optimal. Here are some things to try.
     sys.path.append(parent)
     ```
   - Alternately, you can just add the absolute path string with sys.path.append()
+  - This was changed to not be an issue in this version by just relocating the file
 
 ## Credits
+
+Edited by Sehr Moosabhoy
 
 This package is co-written with [Henrik Björklund](https://github.com/henrikb-umu).
 
